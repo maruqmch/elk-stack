@@ -4,11 +4,14 @@ apt-get install nginx -y
 echo "admin:$(openssl passwd -apr1 admin)" | sudo tee -a /etc/nginx/htpasswd.kibana
 
 vi  /etc/nginx/sites-available/kibana
+
+
 server {
     listen 80 default_server;
     server_name _;
     return 301 https://$server_name$request_uri;
 }
+
 
 server {
     listen 443 default_server ssl http2;
